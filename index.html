@@ -1,1 +1,375 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praise J Media Library</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f8f4;
+    color: #222;
+}
+
+header {
+    background: #075c35;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+nav {
+    background: #064528;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin: 7px;
+}
+
+section {
+    background: white;
+    margin: 20px;
+    padding: 22px;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #075c35;
+}
+
+.welcome {
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.button, button {
+    display: inline-block;
+    background: #075c35;
+    color: white;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+form button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.message {
+    margin-top: 15px;
+    overflow-wrap: anywhere;
+}
+
+footer {
+    background: #064528;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Praise J Media Library</h1>
+    <p>Your memories, safely organized in one place.</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#founder">Founder</a>
+    <a href="#signup">Sign Up</a>
+    <a href="#login">Login</a>
+</nav>
+
+<section class="welcome" id="home">
+    <h2>Welcome to Praise J Media Library</h2>
+    <p>
+        A digital platform designed to help you
+        store, organize and access your photos,
+        videos, music and stories.
+    </p>
+    <a href="#signup" class="button">Get Started</a>
+</section>
+
+<section id="about">
+    <h2>About Our Platform</h2>
+    <p>
+        Praise J Media Library is a digital media
+        storage platform created to make managing
+        personal digital memories easier and more
+        convenient.
+    </p>
+    <p>
+        Our goal is to provide users with one place
+        to organize and access their digital files.
+    </p>
+</section>
+
+<section id="features">
+    <h2>Our Features</h2>
+    <p>📷 Photo Storage</p>
+    <p>🎥 Video Storage</p>
+    <p>🎵 Music Storage</p>
+    <p>📚 Story Storage</p>
+    <p>👤 Personal User Accounts</p>
+    <p>📁 Media Organization</p>
+</section>
+
+<section id="founder">
+    <h2>Meet the Founder</h2>
+    <h3>Ukule Ukule Judah</h3>
+    <p>
+        Ukule Ukule Judah is a 23-year-old Nigerian
+        web developer and founder of Praise J
+        Media Library.
+    </p>
+    <p>
+        He established this platform with a vision
+        of making digital media storage simple,
+        convenient and accessible.
+    </p>
+    <p>
+        He is passionate about web development,
+        digital innovation and creating useful
+        technology.
+    </p>
+    <h3>Our Vision</h3>
+    <p>
+        To help people preserve and manage their
+        digital memories with ease.
+    </p>
+</section>
+
+<section id="signup">
+    <h2>Create Your Account</h2>
+    <p>Join Praise J Media Library today.</p>
+
+    <form id="signupForm">
+        <label>Full Name</label>
+        <input id="fullName" type="text"
+        placeholder="Enter your full name" required>
+
+        <label>Email Address</label>
+        <input id="signupEmail" type="email"
+        placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input id="signupPassword" type="password"
+        placeholder="Create a password"
+        minlength="8" required>
+
+        <button type="submit">Create Account</button>
+    </form>
+
+    <p id="signupMessage" class="message"></p>
+</section>
+
+<section id="login">
+    <h2>Login to Your Account</h2>
+
+    <form id="loginForm">
+        <label>Email Address</label>
+        <input id="loginEmail" type="email"
+        placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input id="loginPassword" type="password"
+        placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p id="loginMessage" class="message"></p>
+
+    <div id="accountArea" hidden>
+        <h3>Welcome to your account!</h3>
+        <p id="accountEmail"></p>
+        <button id="logoutButton" type="button">Logout</button>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Praise J Media Library</p>
+    <p>Created by Ukule Ukule Judah</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+/* INSERT YOUR SUPABASE DETAILS BELOW */
+
+const SUPABASE_URL = "https://qiargygavvslwpvhivqx.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_F89_DQHi-59M4rI5KPY6fw_Xd-G0qTc";
+
+/* CONNECT TO SUPABASE */
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+/* USER REGISTRATION */
+
+document.getElementById("signupForm")
+.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const fullName =
+    document.getElementById("fullName").value;
+
+    const email =
+    document.getElementById("signupEmail").value;
+
+    const password =
+    document.getElementById("signupPassword").value;
+
+    const message =
+    document.getElementById("signupMessage");
+
+    message.textContent = "Creating your account...";
+
+    const { data, error } =
+    await supabaseClient.auth.signUp({
+
+        email: email,
+        password: password,
+
+        options: {
+            data: {
+                full_name: fullName
+            }
+        }
+
+    });
+
+    if (error) {
+        message.textContent = error.message;
+        return;
+    }
+
+    if (data.session) {
+        message.textContent =
+        "Account created successfully!";
+    } else {
+        message.textContent =
+        "Registration received. Check your email to confirm your account.";
+    }
+
+    document.getElementById("signupForm").reset();
+});
+
+/* USER LOGIN */
+
+document.getElementById("loginForm")
+.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email =
+    document.getElementById("loginEmail").value;
+
+    const password =
+    document.getElementById("loginPassword").value;
+
+    const message =
+    document.getElementById("loginMessage");
+
+    message.textContent = "Logging in...";
+
+    const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+
+        email: email,
+        password: password
+
+    });
+
+    if (error) {
+        message.textContent = error.message;
+        return;
+    }
+
+    message.textContent = "Login successful!";
+
+    document.getElementById("loginForm").reset();
+
+    showAccount(data.user);
+});
+
+/* DISPLAY USER ACCOUNT */
+
+function showAccount(user) {
+
+    document.getElementById("accountArea").hidden = !user;
+
+    if (user) {
+        document.getElementById("accountEmail").textContent =
+        "Signed in as: " + user.email;
+    }
+}
+
+/* CHECK EXISTING LOGIN */
+
+supabaseClient.auth.getSession().then(function(result) {
+
+    showAccount(result.data.session?.user);
+
+});
+
+/* WATCH LOGIN CHANGES */
+
+supabaseClient.auth.onAuthStateChange(function(event, session) {
+
+    showAccount(session?.user || null);
+
+});
+
+/* USER LOGOUT */
+
+document.getElementById("logoutButton")
+.addEventListener("click", async function() {
+
+    const { error } = await supabaseClient.auth.signOut();
+
+    document.getElementById("loginMessage").textContent =
+    error ? error.message : "You have logged out.";
+
+});
+</script>
+
+</body>
+</html>
 
